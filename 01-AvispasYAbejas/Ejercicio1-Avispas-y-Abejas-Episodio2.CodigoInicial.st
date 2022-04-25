@@ -1,3 +1,225 @@
+!classDefinition: #AvispaLara category: 'AvispasYAbejasParte2'!
+DenotativeObject subclass: #AvispaLara
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'AvispasYAbejasParte2'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AvispaLara class' category: 'AvispasYAbejasParte2'!
+AvispaLara class
+	instanceVariableNames: ''!
+
+!AvispaLara class methodsFor: 'as yet unclassified' stamp: 'jm 4/23/2022 17:55:34'!
+intentarReproducirse
+	(MiHabitat cantidadDeHuevosDeAvispas > 0)
+		ifTrue: [
+			(MiHabitat huevosConFirmaOrianaYOrnella > 0)
+				ifTrue: [
+					MiHabitat restarHuevoConFirmaOrianaYOrnella.
+					MiHabitat sumarHuevoConFirmaLara.
+					^nil
+				].
+			(MiHabitat huevosConFirmaPolly > 0)
+				ifTrue: [
+					MiHabitat restarHuevoConFirmaPolly.
+					MiHabitat sumarHuevoConFirmaLara.
+					^nil
+				]
+		]
+! !
+
+
+!classDefinition: #AvispaOriana category: 'AvispasYAbejasParte2'!
+DenotativeObject subclass: #AvispaOriana
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'AvispasYAbejasParte2'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AvispaOriana class' category: 'AvispasYAbejasParte2'!
+AvispaOriana class
+	instanceVariableNames: ''!
+
+!AvispaOriana class methodsFor: 'as yet unclassified' stamp: 'jm 4/23/2022 17:22:07'!
+intentarReproducirse
+	(MiHabitat cantidadDeOrugas > 0)
+		ifTrue: [
+			MiHabitat restarOruga.
+			MiHabitat sumarHuevoConFirmaOrianaYOrnella.
+		]! !
+
+
+!classDefinition: #AvispaOrnella category: 'AvispasYAbejasParte2'!
+DenotativeObject subclass: #AvispaOrnella
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'AvispasYAbejasParte2'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AvispaOrnella class' category: 'AvispasYAbejasParte2'!
+AvispaOrnella class
+	instanceVariableNames: ''!
+
+!AvispaOrnella class methodsFor: 'as yet unclassified' stamp: 'jm 4/23/2022 17:28:35'!
+intentarReproducirse
+	(MiHabitat cantidadDeOrugas > 0)
+		ifTrue: [
+			MiHabitat restarOruga.
+			MiHabitat sumarHuevoConFirmaOrianaYOrnella.
+		]	! !
+
+
+!classDefinition: #AvispaPolly category: 'AvispasYAbejasParte2'!
+DenotativeObject subclass: #AvispaPolly
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'AvispasYAbejasParte2'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AvispaPolly class' category: 'AvispasYAbejasParte2'!
+AvispaPolly class
+	instanceVariableNames: ''!
+
+!AvispaPolly class methodsFor: 'as yet unclassified' stamp: 'jm 4/23/2022 17:28:43'!
+intentarReproducirse
+	(MiHabitat cantidadDePolillas > 0)
+		ifTrue: [
+			MiHabitat restarPolilla.
+			MiHabitat sumarHuevoConFirmaPolly.
+		]	! !
+
+
+!classDefinition: #MiHabitat category: 'AvispasYAbejasParte2'!
+DenotativeObject subclass: #MiHabitat
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'AvispasYAbejasParte2'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MiHabitat class' category: 'AvispasYAbejasParte2'!
+MiHabitat class
+	instanceVariableNames: 'cantidadHuevos cantidadOrugas cantidadPolillas diccionarioHuevos'!
+
+!MiHabitat class methodsFor: 'Orugas' stamp: 'jm 4/21/2022 20:14:54'!
+actualizarCantidadOrugas: nuevaCantidad
+	cantidadOrugas := nuevaCantidad! !
+
+!MiHabitat class methodsFor: 'Orugas' stamp: 'jm 4/21/2022 20:13:25'!
+cantidadDeOrugas
+	^cantidadOrugas! !
+
+!MiHabitat class methodsFor: 'Orugas' stamp: 'jm 4/21/2022 20:18:29'!
+restarOruga
+	self actualizarCantidadOrugas: (self cantidadDeOrugas-1)! !
+
+!MiHabitat class methodsFor: 'Orugas' stamp: 'jm 4/21/2022 20:18:44'!
+sumarOruga
+	self actualizarCantidadOrugas: (self cantidadDeOrugas+1)! !
+
+
+!MiHabitat class methodsFor: 'Polillas' stamp: 'jm 4/21/2022 20:54:29'!
+actualizarCantidadPolillas: nuevaCantidad
+	cantidadPolillas := nuevaCantidad! !
+
+!MiHabitat class methodsFor: 'Polillas' stamp: 'jm 4/21/2022 20:54:47'!
+cantidadDePolillas
+	^cantidadPolillas! !
+
+!MiHabitat class methodsFor: 'Polillas' stamp: 'jm 4/21/2022 20:55:16'!
+restarPolilla
+	self actualizarCantidadPolillas: (self cantidadDePolillas-1)! !
+
+!MiHabitat class methodsFor: 'Polillas' stamp: 'jm 4/23/2022 16:49:40'!
+sumarPolilla
+	self actualizarCantidadPolillas: (self cantidadDePolillas+1)! !
+
+
+!MiHabitat class methodsFor: 'Huevos' stamp: 'jm 4/21/2022 20:06:31'!
+actualizarCantidadHuevos: nuevaCantidad
+	cantidadHuevos := nuevaCantidad! !
+
+!MiHabitat class methodsFor: 'Huevos' stamp: 'jm 4/21/2022 19:57:25'!
+cantidadDeHuevosDeAvispas
+	^cantidadHuevos! !
+
+!MiHabitat class methodsFor: 'Huevos' stamp: 'jm 4/23/2022 17:35:29'!
+huevosConFirmaLara
+	^diccionarioHuevos at: 'huevosFirmaLara'! !
+
+!MiHabitat class methodsFor: 'Huevos' stamp: 'jm 4/23/2022 17:35:36'!
+huevosConFirmaOrianaYOrnella
+	^diccionarioHuevos at: 'huevosFirmaOrianaYOrnella'! !
+
+!MiHabitat class methodsFor: 'Huevos' stamp: 'jm 4/23/2022 17:35:43'!
+huevosConFirmaPolly
+	^diccionarioHuevos at: 'huevosFirmaPolly'! !
+
+!MiHabitat class methodsFor: 'Huevos' stamp: 'jm 4/23/2022 17:51:54'!
+restarHuevoConFirmaOrianaYOrnella
+	self restarHuevosTotales.
+	diccionarioHuevos at: 'huevosFirmaOrianaYOrnella' put: (diccionarioHuevos at: 'huevosFirmaOrianaYOrnella')-1.! !
+
+!MiHabitat class methodsFor: 'Huevos' stamp: 'jm 4/23/2022 17:51:11'!
+restarHuevoConFirmaPolly
+	self restarHuevosTotales.
+	diccionarioHuevos at: 'huevosFirmaPolly' put: (diccionarioHuevos at: 'huevosFirmaPolly')-1.! !
+
+!MiHabitat class methodsFor: 'Huevos' stamp: 'jm 4/23/2022 17:51:45'!
+restarHuevosTotales
+	self actualizarCantidadHuevos: (self cantidadDeHuevosDeAvispas-1)! !
+
+!MiHabitat class methodsFor: 'Huevos' stamp: 'jm 4/23/2022 17:38:41'!
+sumarHuevoConFirmaLara
+	self sumarHuevosTotales.
+	diccionarioHuevos at: 'huevosFirmaLara' put: (diccionarioHuevos at: 'huevosFirmaLara')+1.! !
+
+!MiHabitat class methodsFor: 'Huevos' stamp: 'jm 4/23/2022 17:27:45'!
+sumarHuevoConFirmaOrianaYOrnella
+	self sumarHuevosTotales.
+	diccionarioHuevos at: 'huevosFirmaOrianaYOrnella' put: (diccionarioHuevos at: 'huevosFirmaOrianaYOrnella')+1.! !
+
+!MiHabitat class methodsFor: 'Huevos' stamp: 'jm 4/23/2022 17:28:09'!
+sumarHuevoConFirmaPolly
+	self sumarHuevosTotales.
+	diccionarioHuevos at: 'huevosFirmaPolly' put: (diccionarioHuevos at: 'huevosFirmaPolly')+1.! !
+
+!MiHabitat class methodsFor: 'Huevos' stamp: 'jm 4/23/2022 17:27:52'!
+sumarHuevosTotales
+	self actualizarCantidadHuevos: (self cantidadDeHuevosDeAvispas+1)! !
+
+
+!MiHabitat class methodsFor: 'Inicializar' stamp: 'jm 4/23/2022 17:38:56'!
+inicializarHabitat
+	diccionarioHuevos := 	Dictionary new.
+	diccionarioHuevos at: 'huevosFirmaOrianaYOrnella' put: 0.
+	diccionarioHuevos at: 'huevosFirmaPolly' put: 0.
+	diccionarioHuevos at: 'huevosFirmaLara' put: 0.
+	self actualizarCantidadHuevos:0.
+	self actualizarCantidadOrugas:0.
+	self actualizarCantidadPolillas:0.
+	! !
+
+
+!MiHabitat class methodsFor: '--** private fileout/in **--' stamp: 'jm 4/23/2022 17:58:43'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	cantidadHuevos := 1.
+	cantidadOrugas := 2.
+	cantidadPolillas := 1.
+	diccionarioHuevos := ((Dictionary new) add: ('huevosFirmaLara'->0); add: ('huevosFirmaOrianaYOrnella'->0); add: ('huevosFirmaPolly'->1); yourself).! !
+
+
 !classDefinition: #PruebasReproduccionDeAvispas category: 'AvispasYAbejasParte2'!
 DenotativeObject subclass: #PruebasReproduccionDeAvispas
 	instanceVariableNames: ''
@@ -205,62 +427,67 @@ test21CuandoLaraLaAvispaNoTieneRecursosNoDejaUnHuevo
 	Assert that: self cantidadDeHuevosConLaFirmaGeneticaDeLara isEqualTo: 0.! !
 
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:14:52'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/23/2022 17:33:27'!
 cantidadDeHuevosConLaFirmaGeneticaDeLara
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	^self habitat huevosConFirmaLara! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:14:57'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/23/2022 17:33:51'!
 cantidadDeHuevosConLaFirmaGeneticaDeOriana
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	^self habitat huevosConFirmaOrianaYOrnella! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:15:03'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/23/2022 17:34:13'!
 cantidadDeHuevosConLaFirmaGeneticaDeOrnella
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	^self habitat huevosConFirmaOrianaYOrnella! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:15:09'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/23/2022 17:34:22'!
 cantidadDeHuevosConLaFirmaGeneticaDePolly
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	^self habitat huevosConFirmaPolly! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/18/2022 18:43:42'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/21/2022 20:02:43'!
 habitat
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	^MiHabitat! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/18/2022 18:54:17'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/21/2022 21:07:15'!
 hacerQueElHabitatTengaLosRecursosSuficientes
-	"Implementar cuando sea necesario"! !
+	self habitat actualizarCantidadOrugas: 2.
+	self habitat actualizarCantidadPolillas: 2.! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:14:28'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/23/2022 17:40:46'!
 laAvispaLara
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	^AvispaLara! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:14:33'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/21/2022 20:02:32'!
 laAvispaOriana
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	^AvispaOriana! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:14:39'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/21/2022 20:51:54'!
 laAvispaOrnella
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	^AvispaOrnella! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:14:46'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/21/2022 21:01:13'!
 laAvispaPolly
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	^AvispaPolly! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:15:27'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/21/2022 20:21:50'!
 queElHabitatTengaDosOrugasMas
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	self habitat sumarOruga.
+	self habitat sumarOruga.! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:15:33'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/23/2022 16:50:33'!
 queElHabitatTengaDosPolillasMas
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	self habitat sumarPolilla.
+	self habitat sumarPolilla.! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:15:37'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/21/2022 20:20:16'!
 queElHabitatTengaUnaOrugaMas
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	self habitat sumarOruga! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:15:42'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/23/2022 16:50:06'!
 queElHabitatTengaUnaPolillaMas
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	self habitat sumarPolilla! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/18/2022 18:44:02'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'jm 4/23/2022 17:11:34'!
 retrocederElHabitatAlInicioDeLosTiempos
-	"Implementar cuando sea necesario"! !
+	self habitat inicializarHabitat! !
+
+MiHabitat initializeAfterFileIn!
