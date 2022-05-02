@@ -10,3 +10,7 @@ En la realidad nosotros podemos distinguir entre la idea de un objeto y los obje
 
 En Smalltalk, tenemos una suerte de paralelismo con esta característica de la realidad. Este paralelismo es el modelo que nosotros creamos para representar estas entidades de la realidad. En este modelo,  existen clases e instancias. Las clases representan la "idea" de un objeto, y las instancias son  las representaciones de objetos concretos. Siguiendo el ejemplo anterior, podríamos crear una clase "auto" que represente la idea o el concepto de auto, y luego crear varias instancias de autos concretos,  entidades físicas de la realidad.
 
+### Teoria de Naur
+Según Naur, y citamos al paper, "programar debería ser considerada una actividad por la cual los programadores forman o logran un cierto tipo de intuición". Un programa debe tener la capacidad de ser entendido y utilizado por otros programadores en un futuro. Por esto, debería ser claro e intuitivo. La abstracción realizada al eliminar código repetido facilita la lectura y el entendimiento del código.
+
+Esto resulta importante, debido a que en ausencia de los programadores que idearon o realizaron el programa, el código legible permitirá tener una idea real del funcionamiento del mismo. Permitiendo o garantizando en parte la posibilidad de extensión y vida útil del mismo en estas situaciones
