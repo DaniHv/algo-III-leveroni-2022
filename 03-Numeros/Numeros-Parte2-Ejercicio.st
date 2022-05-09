@@ -341,6 +341,41 @@ invalidNumberType
 
 	self error: self class invalidNumberTypeErrorDescription! !
 
+
+!Numero methodsFor: 'arithmetic operations - private' stamp: 'jm 5/5/2022 19:55:11'!
+addFraction: fractionToAdd
+	^self subclassResponsibility.! !
+
+!Numero methodsFor: 'arithmetic operations - private' stamp: 'jm 5/5/2022 19:54:51'!
+addInteger: integerToAdd
+	^self subclassResponsibility.! !
+
+!Numero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:09:20'!
+dividingFraction: fractionToBeDivided
+	^self subclassResponsibility.
+! !
+
+!Numero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:09:29'!
+dividingInteger: integerToBeDivided
+	^self subclassResponsibility.
+! !
+
+!Numero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:54:47'!
+multiplyByFraction: fractionToMultiplyBy
+	^self subclassResponsibility.! !
+
+!Numero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:54:56'!
+multiplyByInteger: integerToMultiplyBy
+	^self subclassResponsibility.! !
+
+!Numero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:20:51'!
+substractToFraction: aFractionSubtrahend
+	^self subclassResponsibility.! !
+
+!Numero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:21:00'!
+substractToInteger: anIntegerSubtrahend
+	^self subclassResponsibility.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Numero class' category: 'Numeros-Parte2-Ejercicio'!
@@ -364,27 +399,23 @@ Numero subclass: #Entero
 	poolDictionaries: ''
 	category: 'Numeros-Parte2-Ejercicio'!
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 23:13'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'jm 5/5/2022 20:19:34'!
 * aMultiplier 
-	
-	^self class with: value * aMultiplier integerValue
+	^aMultiplier multiplyByInteger: self.
 	! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 23:13'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'jm 5/5/2022 19:49:57'!
 + anAdder 
-	
-	^self class with: value + anAdder integerValue
+	^anAdder addInteger: self.
 ! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'NR 9/23/2018 23:40:37'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'DHV 5/9/2022 17:42:50'!
 - aSubtrahend 
-	
-	^ self class with: value - aSubtrahend integerValue.! !
+	^aSubtrahend substractToInteger: self.! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 23:14'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'jm 5/5/2022 20:55:39'!
 / aDivisor 
-	
-	^Fraccion with: self over: aDivisor! !
+	^aDivisor dividingInteger: self.! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HAW 9/24/2018 08:47:50'!
 fibonacci
@@ -448,15 +479,66 @@ isZero
 	^value = 0! !
 
 
-!Entero methodsFor: 'arithmetic operations - private' stamp: 'HernanWilkinson 5/7/2016 21:55'!
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:29:53'!
 // aDivisor 
-	
 	^self class with: value // aDivisor integerValue! !
 
-!Entero methodsFor: 'arithmetic operations - private' stamp: 'HernanWilkinson 5/7/2016 21:00'!
-greatestCommonDivisorWith: anEntero 
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:29:48'!
+addFraction: fractionToAdd
+	| newNumerator newDenominator |
 	
+	newNumerator := fractionToAdd numerator + (self * fractionToAdd denominator).
+	newDenominator := fractionToAdd denominator.
+	
+	^fractionToAdd class with: newNumerator over: newDenominator.! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'jm 5/5/2022 20:31:14'!
+addInteger: integerToAdd
+	^self class with: (value + integerToAdd integerValue).! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:29:05'!
+dividingFraction: fractionToBeDivided
+	| newNumerator newDenominator |
+	
+	newNumerator := fractionToBeDivided numerator.
+	newDenominator := self * fractionToBeDivided denominator.
+
+	^fractionToBeDivided class with: newNumerator over: newDenominator.
+! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:11:03'!
+dividingInteger: integerToBeDivided
+	^Fraccion with: integerToBeDivided over: self.! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:28:14'!
+greatestCommonDivisorWith: anEntero 
 	^self class with: (value gcd: anEntero integerValue)! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:27:44'!
+multiplyByFraction: fractionToMultiplyBy
+	| newNumerator newDenominator |
+
+	newNumerator := self * fractionToMultiplyBy numerator.
+	newDenominator := fractionToMultiplyBy denominator.
+
+	^fractionToMultiplyBy class with: newNumerator over: newDenominator.! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'jm 5/5/2022 20:40:47'!
+multiplyByInteger: integerToMultiplyBy
+	^self class with: (value * integerToMultiplyBy integerValue).! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:28:00'!
+substractToFraction: fractionToSubtractTo
+	| newNumerator newDenominator |
+
+	newNumerator := fractionToSubtractTo numerator - (fractionToSubtractTo denominator * self).
+	newDenominator := fractionToSubtractTo denominator.
+	
+	^fractionToSubtractTo class with: newNumerator over: newDenominator.! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:28:04'!
+substractToInteger: integerToSubtractTo
+	^self class with: (integerToSubtractTo integerValue - value).! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -484,37 +566,22 @@ Numero subclass: #Fraccion
 	poolDictionaries: ''
 	category: 'Numeros-Parte2-Ejercicio'!
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 23:14'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'jm 5/5/2022 20:18:29'!
 * aMultiplier 
-	
-	^(numerator * aMultiplier numerator) / (denominator * aMultiplier denominator)
-	! !
+	^aMultiplier multiplyByFraction: self.! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 23:14'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'jm 5/5/2022 19:53:32'!
 + anAdder 
-	
-	| newNumerator newDenominator |
-	
-	newNumerator := (numerator * anAdder denominator) + (denominator * anAdder numerator).
-	newDenominator := denominator * anAdder denominator.
-	
-	^newNumerator / newDenominator ! !
+	^anAdder addFraction: self.! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'NR 9/23/2018 23:43:50'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'DHV 5/9/2022 17:19:51'!
 - aSubtrahend 
-	
-	| newNumerator newDenominator |
-	
-	newNumerator := (numerator * aSubtrahend denominator) - (denominator * aSubtrahend numerator).
-	newDenominator := denominator * aSubtrahend denominator.
-	
-	^newNumerator / newDenominator 
+	^aSubtrahend substractToFraction: self.
 ! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 23:14'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'jm 5/5/2022 21:06:00'!
 / aDivisor 
-	
-	^(numerator * aDivisor denominator) / (denominator * aDivisor numerator)! !
+	^aDivisor dividingFraction: self.! !
 
 
 !Fraccion methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 20:42'!
@@ -564,6 +631,79 @@ isOne
 isZero
 	
 	^false! !
+
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'jm 5/5/2022 19:57:53'!
+addFraction: fractionToAdd
+	| newNumerator newDenominator |
+	
+	newNumerator := (numerator * fractionToAdd denominator) + (denominator * fractionToAdd numerator).
+	newDenominator := denominator * fractionToAdd denominator.
+	
+	^newNumerator / newDenominator! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:32:49'!
+addInteger: integerToAdd
+	| newNumerator newDenominator |
+
+	newNumerator := self numerator + (integerToAdd * self denominator).
+	newDenominator := self denominator.
+	
+	^self class with: newNumerator over: newDenominator.! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:33:20'!
+dividingFraction: fractionToBeDivided
+	| newNumerator newDenominator |
+
+	newNumerator := self denominator * fractionToBeDivided numerator.
+	newDenominator := self numerator * fractionToBeDivided denominator.
+
+	^self class with: newNumerator over: newDenominator.! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:34:06'!
+dividingInteger: integerToBeDivided
+	| newNumerator newDenominator |
+
+	newNumerator := self denominator * integerToBeDivided.
+	newDenominator := self numerator.
+	
+	^self class with: newNumerator over: newDenominator.! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:34:50'!
+multiplyByFraction: fractionToMultiplyBy
+	| newNumerator newDenominator |
+
+	newNumerator := self numerator * fractionToMultiplyBy numerator.
+	newDenominator := self denominator * fractionToMultiplyBy denominator.
+
+	^self class with: newNumerator over: newDenominator.! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:35:26'!
+multiplyByInteger: integerToMultiplyBy
+	| newNumerator newDenominator |
+
+	newNumerator := self numerator * integerToMultiplyBy.
+	newDenominator := self denominator.
+
+	^self class with: newNumerator over: newDenominator. ! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:20:02'!
+substractToFraction: fractionToSubtractTo
+	| newNumerator newDenominator |
+
+	newNumerator := (denominator * fractionToSubtractTo numerator) - (numerator * fractionToSubtractTo denominator).
+	newDenominator := denominator * fractionToSubtractTo denominator.
+
+	^self class with: newNumerator over: newDenominator.! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'DHV 5/9/2022 17:18:08'!
+substractToInteger: integerToSubtractTo
+	| newNumerator newDenominator |
+
+	newNumerator := (integerToSubtractTo * denominator) - numerator.
+	newDenominator := denominator.
+
+	^self class with: newNumerator over: newDenominator.! !
 
 
 !Fraccion methodsFor: 'printing' stamp: 'HAW 9/24/2018 08:54:46'!
