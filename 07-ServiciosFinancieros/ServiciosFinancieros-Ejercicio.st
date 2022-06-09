@@ -480,19 +480,19 @@ transactions
 	self subclassResponsibility.! !
 
 
-!BankAssets methodsFor: 'as yet unclassified' stamp: 'DHV 6/9/2022 18:06:18'!
+!BankAssets methodsFor: 'relations' stamp: 'DHV 6/9/2022 18:06:18'!
 isIncludedInAsset: anAsset
 	^anAsset isOrIncludesAsset: self.! !
 
-!BankAssets methodsFor: 'as yet unclassified' stamp: 'DHV 6/9/2022 17:38:20'!
+!BankAssets methodsFor: 'relations' stamp: 'DHV 6/9/2022 17:38:20'!
 isOrIncludesAsset: anAsset
 	self subclassResponsibility.! !
 
-!BankAssets methodsFor: 'as yet unclassified' stamp: 'DHV 6/9/2022 18:25:30'!
+!BankAssets methodsFor: 'relations' stamp: 'DHV 6/9/2022 18:25:30'!
 parentAsset
 	^parentAsset.! !
 
-!BankAssets methodsFor: 'as yet unclassified' stamp: 'DHV 6/9/2022 18:25:58'!
+!BankAssets methodsFor: 'relations' stamp: 'DHV 6/9/2022 18:25:58'!
 registerParentAsset: anAsset
 	parentAsset := anAsset.! !
 
@@ -519,7 +519,7 @@ validateCanRegisterAsset: anAsset
 ! !
 
 
-!Portfolio methodsFor: 'initialization' stamp: 'DHV 6/8/2022 21:40:22'!
+!Portfolio methodsFor: 'initialization' stamp: 'DHV 6/9/2022 18:56:28'!
 initialize
 	assets := OrderedCollection new.! !
 
@@ -527,6 +527,10 @@ initialize
 !Portfolio methodsFor: 'accounts - subportfolios' stamp: 'DHV 6/8/2022 21:36:13'!
 assets
 	^assets.! !
+
+!Portfolio methodsFor: 'accounts - subportfolios' stamp: 'DHV 6/9/2022 17:40:34'!
+isOrIncludesAsset: anAssetToEvaluate
+	^(self == anAssetToEvaluate) or: (assets anySatisfy: [:anAsset | anAsset isOrIncludesAsset: anAssetToEvaluate]).! !
 
 !Portfolio methodsFor: 'accounts - subportfolios' stamp: 'DHV 6/9/2022 18:36:00'!
 registerAsset: anAsset
@@ -556,11 +560,6 @@ transactions
 	
 	^transactions.! !
 
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'DHV 6/9/2022 17:40:34'!
-isOrIncludesAsset: anAssetToEvaluate
-	^(self == anAssetToEvaluate) or: (assets anySatisfy: [:anAsset | anAsset isOrIncludesAsset: anAssetToEvaluate]).! !
-
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'ServiciosFinancieros-Ejercicio'!
@@ -574,10 +573,6 @@ errorMessageAssetAlreadyIncludedInParent
 !Portfolio class methodsFor: 'error messages' stamp: 'DHV 6/9/2022 18:09:33'!
 errorMessageCannotAddAlreadyIncludedAssetOrItself
 	^'Cannot add an account or portfolio already included'.! !
-
-!Portfolio class methodsFor: 'error messages' stamp: 'DHV 6/9/2022 18:44:43'!
-errorMessageCannotRegisterPortfolioWithAssetsInCommon
-	^'Cannot register portfolio on another portfolio if they have assets in common'.! !
 
 
 !classDefinition: #ReceptiveAccount category: 'ServiciosFinancieros-Ejercicio'!
@@ -604,6 +599,10 @@ hasRegistered: aTransaction
 	^ transactions includes: aTransaction 
 ! !
 
+!ReceptiveAccount methodsFor: 'main protocol' stamp: 'DHV 6/9/2022 17:40:43'!
+isOrIncludesAsset: anAssetToEvaluate
+	^(self == anAssetToEvaluate).! !
+
 !ReceptiveAccount methodsFor: 'main protocol' stamp: 'HernanWilkinson 7/13/2011 18:37'!
 register: aTransaction
 
@@ -614,11 +613,6 @@ register: aTransaction
 transactions 
 
 	^ transactions copy! !
-
-
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'DHV 6/9/2022 17:40:43'!
-isOrIncludesAsset: anAssetToEvaluate
-	^(self == anAssetToEvaluate).! !
 
 
 !classDefinition: #Transfer category: 'ServiciosFinancieros-Ejercicio'!
